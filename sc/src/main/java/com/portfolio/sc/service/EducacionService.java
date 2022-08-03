@@ -41,4 +41,10 @@ public class EducacionService implements IService<Educacion>{
         educaRepo.deleteById(id);
     }
     
+    //ACTUALIZAR
+    @Override
+    public void actualizar(Long id, Educacion educacion) throws Exception {
+        educaRepo.save(educacion);
+    }
+    
 }

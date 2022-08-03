@@ -7,6 +7,7 @@ import com.portfolio.sc.model.Experiencia;
 import com.portfolio.sc.service.IService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -42,27 +43,26 @@ public class ExperienciaController {
         iexperienciaService.borrar(id);
     }
     
+        
     //EDITAR EXPERIENCIA
     @PutMapping ("/experiencia/editar/{id}")
-    public Experiencia newExperiencia (@PathVariable Long id,
-                                 @RequestParam("puestoEx") String newPuestoEx,
-                                 @RequestParam("fechaEx") String newFechaEx,
-                                 @RequestParam("empresaEx") String newEmpresaEX,
-                                 @RequestParam("descripcionEx") String newDescrpcionEx,
-                                 @RequestParam("img_LogoEx") String newImg_LogoEx) throws Exception{
+    public ResponseEntity<Experiencia> actualizarExperiencia 
+                            (@PathVariable Long id,
+                             @RequestBody Experiencia nuevaExperiencia) throws Exception {
         
-        Experiencia experiencia = iexperienciaService.buscar(id);
-        //nuevo seteo
-        experiencia.setPuestoEx(newPuestoEx);
-        experiencia.setFechaEx(newFechaEx);
-        experiencia.setEmpresaEx(newEmpresaEX);
-        experiencia.setDescripcionEx(newDescrpcionEx);
-        experiencia.setImg_LogoEx(newImg_LogoEx);
+        Experiencia experiencia = this.iexperienciaService.buscar(id);
+        
+        experiencia.setPuestoEx(nuevaExperiencia.getPuestoEx());
+        experiencia.setFechaEx(nuevaExperiencia.getFechaEx());
+        experiencia.setEmpresaEx(nuevaExperiencia.getEmpresaEx());
+        experiencia.setDescripcionEx(nuevaExperiencia.getDescripcionEx());
+        experiencia.setImg_LogoEx(nuevaExperiencia.getImg_LogoEx());
         
         //Nueva experiencia        
         iexperienciaService.guardar(experiencia);
-        return experiencia;       
-        
+              
+        return ResponseEntity.ok(experiencia);
     }
     
 }
+

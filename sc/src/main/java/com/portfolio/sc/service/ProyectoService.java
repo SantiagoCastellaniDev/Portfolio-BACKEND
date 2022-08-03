@@ -41,4 +41,10 @@ public class ProyectoService implements IService<Proyecto>{
         proyeRepo.deleteById(id);
     }
     
+    //ACTUALIZAR
+    @Override
+    public void actualizar(Long id, Proyecto proyecto) throws Exception {
+        proyeRepo.save(proyecto);
+    }
+    
 }

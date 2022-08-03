@@ -7,6 +7,7 @@ import com.portfolio.sc.model.Proyecto;
 import com.portfolio.sc.service.IService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -45,26 +45,24 @@ public class ProyectoController {
     
     //EDITAR PROYECTO
     @PutMapping ("/proyecto/editar/{id}")
-    public Proyecto  newProyecto (@PathVariable Long id,
-                                 @RequestParam("nombreProject") String newNombreProject,
-                                 @RequestParam("fechaProject") String newFechaProject,
-                                 @RequestParam("puestoProject") String newPuestoProject,
-                                 @RequestParam("descripcionProject") String newDescrpcionProject,
-                                 @RequestParam("img_Project") String newImg_Project) throws Exception{
+    public ResponseEntity<Proyecto> actualizarExperiencia 
+                            (@PathVariable Long id,
+                             @RequestBody Proyecto nuevoProyecto) throws Exception {
         
-        Proyecto proyecto = iproyectoService.buscar(id);
-        //nuevo seteo
-        proyecto.setNombreProject(newNombreProject);
-        proyecto.setFechaProject(newFechaProject);
-        proyecto.setPuestoProject(newPuestoProject);
-        proyecto.setDescripcionProject(newDescrpcionProject);
-        proyecto.setImg_Project(newImg_Project);
-                
-        //Nuevo Proyecto        
+        Proyecto proyecto = this.iproyectoService.buscar(id);
+        
+        proyecto.setNombreProject(nuevoProyecto.getNombreProject());
+        proyecto.setFechaProject(nuevoProyecto.getFechaProject());
+        proyecto.setPuestoProject(nuevoProyecto.getPuestoProject());
+        proyecto.setDescripcionProject(nuevoProyecto.getDescripcionProject());
+        proyecto.setImg_Project(nuevoProyecto.getImg_Project());
+        
+        //Nueva experiencia        
         iproyectoService.guardar(proyecto);
-        return proyecto;       
-        
+              
+        return ResponseEntity.ok(proyecto);
     }
+    
     
     
 }

@@ -44,5 +44,6 @@ public class Experiencia {
         this.descripcionEx = descripcionEx;
         this.img_LogoEx = img_LogoEx;
     }
+ 
         
 }

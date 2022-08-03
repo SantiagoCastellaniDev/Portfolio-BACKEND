@@ -41,4 +41,10 @@ public class PersonaService implements IService<Persona> {
         persoRepo.deleteById(id);
     }
     
+    //ACTUALIZAR
+    @Override
+    public void actualizar(Long id, Persona persona) throws Exception {
+        persoRepo.save(persona);
+    }
+    
 }

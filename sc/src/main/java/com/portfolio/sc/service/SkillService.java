@@ -41,4 +41,10 @@ public class SkillService implements IService<Skill>{
         skillRepo.deleteById(id);
     }
     
+    //ACTUALIZAR
+    @Override
+    public void actualizar(Long id, Skill skill) throws Exception {
+        skillRepo.save(skill);
+    }
+    
 }

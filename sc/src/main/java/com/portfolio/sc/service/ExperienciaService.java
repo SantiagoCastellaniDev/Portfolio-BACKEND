@@ -41,4 +41,11 @@ public class ExperienciaService implements IService<Experiencia>{
         experiRepo.deleteById(id);
     }
     
+    
+    //ACTUALIZAR
+    @Override
+    public void actualizar(Long id, Experiencia experiencia) throws Exception {
+        experiRepo.save(experiencia);
+    }
+    
 }
