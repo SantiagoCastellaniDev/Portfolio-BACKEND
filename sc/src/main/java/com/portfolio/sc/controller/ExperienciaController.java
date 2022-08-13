@@ -8,6 +8,7 @@ import com.portfolio.sc.service.IService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,12 +33,14 @@ public class ExperienciaController {
     }    
     
     //GUARDAR EXPERIENCIA
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/experiencia/guardar")
     public void guardarExperiencia(@RequestBody Experiencia experiencia) throws Exception{
         iexperienciaService.guardar(experiencia);
     }
     
     //BORRAR EXPERIENCIA
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/experiencia/borrar/{id}")
     public void borrarExperiencia(@PathVariable Long id) throws Exception{
         iexperienciaService.borrar(id);
@@ -45,6 +48,7 @@ public class ExperienciaController {
     
         
     //EDITAR EXPERIENCIA
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/experiencia/editar/{id}")
     public ResponseEntity<Experiencia> actualizarExperiencia 
                             (@PathVariable Long id,

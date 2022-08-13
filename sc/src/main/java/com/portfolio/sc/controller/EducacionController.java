@@ -8,6 +8,7 @@ import com.portfolio.sc.service.IService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,18 +32,21 @@ public class EducacionController {
     }    
     
     //GUARDAR EDUCACION
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/educacion/guardar")
     public void guardarEducacion(@RequestBody Educacion educacion) throws Exception{
         ieducacionService.guardar(educacion);
     }
     
     //BORRAR EDUCACION
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/educacion/borrar/{id}")
     public void borrarEducacion(@PathVariable Long id) throws Exception{
         ieducacionService.borrar(id);
     }
         
     //EDITAR EDUCACION
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/educacion/editar/{id}")
     public ResponseEntity<Educacion> actualizarEducacion 
                             (@PathVariable Long id,

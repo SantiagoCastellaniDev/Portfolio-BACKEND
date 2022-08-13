@@ -8,6 +8,7 @@ import com.portfolio.sc.service.IService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class PersonaController {
     }
     
     //GUARDAR PERSONA
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/persona/guardar")
     public String guardarPersona(@RequestBody Persona persona) throws Exception{
         ipersonaService.guardar(persona);
@@ -46,6 +48,7 @@ public class PersonaController {
     }
     
     //BORRAR PERSONA
+    @PreAuthorize("hasRole('ADMIN')")    
     @DeleteMapping ("/persona/borrar/{id}")
     public String borrarPersona(@PathVariable Long id) throws Exception{
         ipersonaService.borrar(id);
@@ -54,6 +57,7 @@ public class PersonaController {
     
   
     //EDITAR PERSONA
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/persona/editar/{id}")
     public ResponseEntity<Persona> actualizarPersona
                             (@PathVariable Long id,

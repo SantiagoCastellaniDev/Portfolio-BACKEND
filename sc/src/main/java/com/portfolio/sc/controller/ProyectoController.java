@@ -8,6 +8,7 @@ import com.portfolio.sc.service.IService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,18 +33,21 @@ public class ProyectoController {
     }
     
     //GUARDAR PROYECTO
-    @PostMapping ("/proyecto/guardar")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping ("/proyecto/guardar")    
     public void guardarProyecto(@RequestBody Proyecto proyecto) throws Exception{
         iproyectoService.guardar(proyecto);
     }
     
     //BORRAR PROYECTO
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/proyecto/borrar/{id}")
     public void borrarProyecto(@PathVariable Long id) throws Exception{
         iproyectoService.borrar(id);
     }
     
     //EDITAR PROYECTO
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/proyecto/editar/{id}")
     public ResponseEntity<Proyecto> actualizarExperiencia 
                             (@PathVariable Long id,
@@ -61,8 +65,7 @@ public class ProyectoController {
         iproyectoService.guardar(proyecto);
               
         return ResponseEntity.ok(proyecto);
-    }
-    
+    }    
     
     
 }

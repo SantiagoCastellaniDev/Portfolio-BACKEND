@@ -8,6 +8,7 @@ import com.portfolio.sc.service.IService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,7 @@ public class SkillController {
     
     
     //GUARDAR SKILL
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/skill/guardar")
     public void guardarSkill(@RequestBody Skill skill) throws Exception{
         iskillService.guardar(skill);
@@ -40,6 +42,7 @@ public class SkillController {
     
     
     //BORRAR SKILL
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/skill/borrar/{id}")
     public void borrarSkill(@PathVariable Long id) throws Exception{
         iskillService.borrar(id);
@@ -47,6 +50,7 @@ public class SkillController {
     
     
     //EDITAR SKILL
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/skill/editar/{id}")
     public ResponseEntity<Skill> actualizarSkill 
                             (@PathVariable Long id,
