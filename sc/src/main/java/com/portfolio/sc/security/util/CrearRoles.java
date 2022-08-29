@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 @Component */
 public class CrearRoles  /*implements CommandLineRunner */{
     
-    /*
     
+    /*
     @Autowired
     RolService rolService;
 

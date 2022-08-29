@@ -52,7 +52,12 @@ public class AuthController {
 
     @Autowired
     JwtProvider jwtProvider;
-
+    
+    
+    // NUEVO USUARIO
+    /* El método crear NUEVO USUARIO está desactivado */
+    
+    /*
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
@@ -72,7 +77,10 @@ public class AuthController {
         usuarioService.save(usuario);
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
-
+*/
+    
+    // LOGIN 
+    
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
