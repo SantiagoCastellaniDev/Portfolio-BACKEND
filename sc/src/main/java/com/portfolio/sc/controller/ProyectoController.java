@@ -61,7 +61,7 @@ public class ProyectoController {
         proyecto.setDescripcionProject(nuevoProyecto.getDescripcionProject());
         proyecto.setImg_Project(nuevoProyecto.getImg_Project());
         
-        //Nueva experiencia        
+        //Nuevo proyecto        
         iproyectoService.guardar(proyecto);
               
         return ResponseEntity.ok(proyecto);

@@ -18,16 +18,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-
-//CROSS ORIGIN
 @CrossOrigin(origins="*")
-//CROSS ORIGIN
-
-//REQUEST MAPPING indica donde esta mapeado, la url del front
-//@RequestMapping("/persona")
-//REQUEST MAPPING
-
 public class PersonaController {
     
     @Autowired
@@ -46,6 +39,7 @@ public class PersonaController {
         ipersonaService.guardar(persona);
         return "La persona se guardó correctamente";
     }
+
     
     //BORRAR PERSONA
     @PreAuthorize("hasRole('ADMIN')")    
@@ -54,6 +48,7 @@ public class PersonaController {
         ipersonaService.borrar(id);
         return "La persona se eliminó correctamente";
     }
+
     
   
     //EDITAR PERSONA
@@ -72,15 +67,11 @@ public class PersonaController {
         persona.setImg_perfil(nuevaPersona.getImg_perfil());
         persona.setImg_banner(nuevaPersona.getImg_banner());
        
-        
         //Nueva persona      
         ipersonaService.guardar(persona);
               
         return ResponseEntity.ok(persona);
-    }
-                      
-
-
+    }       
     
     
 }

@@ -60,7 +60,7 @@ public class EducacionController {
         educacion.setDescripcionEdu(nuevaEducacion.getDescripcionEdu());
         educacion.setImg_LogoEdu(nuevaEducacion.getImg_LogoEdu());
         
-        //Nueva experiencia        
+        //Nueva educación        
         ieducacionService.guardar(educacion);
               
         return ResponseEntity.ok(educacion);
