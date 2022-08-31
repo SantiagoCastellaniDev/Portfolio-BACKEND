@@ -65,7 +65,7 @@ public class SkillController {
         skill.setImg_Skill(nuevaSkill.getImg_Skill());
         
         
-        //Nueva experiencia        
+        //Nueva skill        
         iskillService.guardar(skill);
               
         return ResponseEntity.ok(skill);

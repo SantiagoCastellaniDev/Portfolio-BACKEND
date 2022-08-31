@@ -12,7 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 
-
+// Solo se crea roles al iniciar la base de datos...
 @Component */
 public class CrearRoles  /*implements CommandLineRunner */{
     
